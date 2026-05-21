@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GMOS TV</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="tv-screen">
+        <div class="top-bar">
+            <div class="clock" id="clock">00:00</div>
+            <div class="status-icons">
+                <span>📶</span>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <h1 id="hero-title">Bem-vindo ao GMOS TV</h1>
+            <p id="hero-desc">Sua central de entretenimento definitiva.</p>
+        </div>
+
+        <div class="apps-section">
+            <h2>Meus Aplicativos</h2>
+            <div class="apps-carousel" id="apps-container">
+                <!-- Apps will be injected here dynamically via JS -->
+                <div class="app-card placeholder" tabindex="0">
+                    <div class="app-icon">⏳</div>
+                    <span>Carregando...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
