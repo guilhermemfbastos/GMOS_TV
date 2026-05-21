@@ -64,8 +64,8 @@ function renderApps(appsList) {
 
         card.addEventListener('click', () => {
             console.log("Abrindo pacote:", app.packageName);
-            if (window.AppLauncher) {
-                window.AppLauncher.launchApp({ packageName: app.packageName });
+            if (window.Capacitor && window.Capacitor.Plugins.AppLauncherPlugin) {
+                window.Capacitor.Plugins.AppLauncherPlugin.launchApp({ packageName: app.packageName });
             } else {
                 alert(`Lançando: ${app.name}\nPacote: ${app.packageName}\n\nIsso funcionará na TV!`);
             }
