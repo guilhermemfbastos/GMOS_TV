@@ -1,0 +1,6 @@
+{
+  "appId": "com.gmos.tv.v2",
+  "appName": "GMOS-TV-V2",
+  "webDir": "src",
+  "bundledWebRuntime": false
+}

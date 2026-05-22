@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMOS TV Interface</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Hero Section (Banner topo) -->
+    <div class="hero" id="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">BEM VINDO AO GMOS</h1>
+            <p class="hero-subtitle">Assista agora | <span class="premium-text">Exclusivo</span></p>
+            <div class="hero-button focusable" tabindex="0" data-action="learn-more">Saiba Mais</div>
+        </div>
+        <div class="hero-gradient"></div>
+    </div>
+
+    <!-- Barra de Navegação Central -->
+    <div class="nav-bar">
+        <!-- Assistente Virtual -->
+        <div class="nav-icon focusable virtual-assistant-btn" tabindex="0" data-action="assistant">
+            <div class="va-glow"></div>
+            🎙️
+        </div>
+
+        <div class="nav-icon focusable" tabindex="0" data-action="profile">👤</div>
+        <div class="nav-icon focusable" tabindex="0" data-action="search">🔍</div>
+        <div class="nav-icon focusable active" tabindex="0" data-action="home">🏠</div>
+        <div class="nav-icon focusable" tabindex="0" data-action="live">📺</div>
+        <div class="nav-icon focusable" tabindex="0" data-action="bookmarks">🔖</div>
+
+        <!-- Espaçador -->
+        <div class="nav-spacer"></div>
+
+        <!-- Seção de Apps Originais (lado a lado) -->
+        <div class="nav-app focusable" tabindex="0" data-action="launch" data-pkg="Navegador">
+            <div class="app-icon-bg" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🌐</div>
+        </div>
+        <div class="nav-app focusable" tabindex="0" data-action="launch" data-pkg="Arquivos">
+            <div class="app-icon-bg" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);">📁</div>
+        </div>
+        <div class="nav-app focusable" tabindex="0" data-action="launch" data-pkg="Terminal">
+            <div class="app-icon-bg" style="background: linear-gradient(135deg, #434343 0%, #000000 100%);">_></div>
+        </div>
+        
+        <!-- Botão de Configuração Original -->
+        <div class="nav-icon focusable settings-btn" tabindex="0" data-action="launch" data-pkg="Configurações">⚙️</div>
+    </div>
+
+    <!-- Trilhas de Conteúdo (Filmes/Séries) -->
+    <div class="content-rows">
+        <h2 class="row-title">Recomendados para Você</h2>
+        <div class="posters-row">
+            <div class="poster focusable" tabindex="0" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=400&h=600');">
+                <div class="poster-title">Filme 1</div>
+            </div>
+            <div class="poster focusable" tabindex="0" style="background-image: url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&q=80&w=400&h=600');">
+                <div class="poster-title">Filme 2</div>
+            </div>
+            <div class="poster focusable" tabindex="0" style="background-image: url('https://images.unsplash.com/photo-1506744626753-1fa44df14c28?auto=format&fit=crop&q=80&w=400&h=600');">
+                <div class="poster-title">Filme 3</div>
+            </div>
+            <div class="poster focusable" tabindex="0" style="background-image: url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=400&h=600');">
+                <div class="poster-title">Filme 4</div>
+            </div>
+            <div class="poster focusable" tabindex="0" style="background-image: url('https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&q=80&w=400&h=600');">
+                <div class="poster-title">Filme 5</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assistente Virtual Overlay (Simulado) -->
+    <div id="va-overlay" class="hidden">
+        <div class="va-container">
+            <div class="va-waves">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+            <h3>Assistente Virtual GMOS</h3>
+            <p>Estou ouvindo... O que deseja fazer na sua TV?</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

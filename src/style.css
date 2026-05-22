@@ -1,0 +1,260 @@
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f111a;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden; /* Importante para TV */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Foco do Controle Remoto (Crucial para TV) */
+.focusable:focus {
+    outline: 4px solid #ffffff;
+    outline-offset: 4px;
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    transition: all 0.2s ease;
+}
+
+.focusable {
+    transition: all 0.2s ease;
+    cursor: pointer; /* Para testes com mouse */
+}
+
+/* Seção Hero (Banner) */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    background-image: url('https://images.unsplash.com/photo-1506744626753-1fa44df14c28?auto=format&fit=crop&q=80&w=1920&h=1080');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 60px;
+}
+
+.hero-gradient {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, #0f111a 0%, rgba(15,17,26,0) 100%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 30px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+}
+
+.premium-text {
+    color: #00a8e1; /* Cor da Prime Video */
+    font-weight: 600;
+}
+
+.hero-button {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Barra de Navegação */
+.nav-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+    height: 80px;
+    background: linear-gradient(to right, rgba(20,20,30,0.9) 0%, rgba(15,17,26,0.9) 100%);
+    z-index: 5;
+}
+
+.nav-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: rgba(255,255,255,0.05);
+    margin-right: 15px;
+    position: relative;
+}
+
+.nav-icon.active {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid #ffffff;
+}
+
+.nav-spacer {
+    flex-grow: 1;
+}
+
+/* Apps Originais na Nav */
+.nav-app {
+    width: 120px;
+    height: 60px;
+    border-radius: 8px;
+    margin-left: 15px;
+    background: #1a1c29;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.app-icon-bg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.settings-btn {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+/* Assistente Virtual Botão */
+.virtual-assistant-btn {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: white;
+}
+
+.va-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00f2fe;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+/* Conteúdos e Posters */
+.content-rows {
+    padding: 30px 60px;
+    flex-grow: 1;
+}
+
+.row-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+}
+
+.posters-row {
+    display: flex;
+    gap: 20px;
+}
+
+.poster {
+    width: 200px;
+    height: 120px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.poster-title {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Assistente Virtual Overlay */
+#va-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+#va-overlay.hidden {
+    display: none;
+}
+
+.va-container {
+    text-align: center;
+}
+
+.va-container h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #00f2fe;
+}
+
+.va-container p {
+    font-size: 1.2rem;
+    color: #b0b0b0;
+}
+
+.va-waves {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.va-waves .wave {
+    width: 15px;
+    height: 20px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border-radius: 10px;
+    animation: wave-anim 1s infinite ease-in-out alternate;
+}
+
+.va-waves .wave:nth-child(2) { animation-delay: 0.2s; }
+.va-waves .wave:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes wave-anim {
+    0% { height: 20px; }
+    100% { height: 80px; }
+}
