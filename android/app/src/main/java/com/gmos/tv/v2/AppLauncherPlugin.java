@@ -68,6 +68,18 @@ public class AppLauncherPlugin extends Plugin {
         }
     }
 
+    @PluginMethod
+    public void openSettings(PluginCall call) {
+        Intent intent = new Intent(android.provider.Settings.ACTION_SETTINGS);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+            getContext().startActivity(intent);
+            call.resolve();
+        } else {
+            call.reject("Settings not found");
+        }
+    }
+
     private String getBase64FromDrawable(Drawable drawable) {
         try {
             Bitmap bitmap;

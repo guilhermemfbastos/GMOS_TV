@@ -110,6 +110,13 @@ document.addEventListener('click', (e) => {
             alert(`Iniciando app: ${pkg}`);
         }
     }
+    else if (action === 'settings') {
+        if (window.Capacitor && window.Capacitor.Plugins.AppLauncherPlugin) {
+            window.Capacitor.Plugins.AppLauncherPlugin.openSettings();
+        } else {
+            alert("Abrindo configurações nativas da TV...");
+        }
+    }
     else {
         console.log("Ação clicada:", action);
         // Animação de clique
