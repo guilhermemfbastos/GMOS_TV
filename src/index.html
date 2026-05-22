@@ -24,7 +24,7 @@
         <!-- Assistente Virtual -->
         <div class="nav-icon focusable virtual-assistant-btn" tabindex="0" data-action="assistant">
             <div class="va-glow"></div>
-            🎙️
+            💬
         </div>
 
         <div class="nav-icon focusable" tabindex="0" data-action="profile">👤</div>
@@ -61,16 +61,22 @@
         </div>
     </div>
 
-    <!-- Assistente Virtual Overlay (Simulado) -->
+    <!-- Assistente Virtual Overlay (Chat) -->
     <div id="va-overlay" class="hidden">
-        <div class="va-container">
-            <div class="va-waves">
-                <div class="wave"></div>
-                <div class="wave"></div>
-                <div class="wave"></div>
+        <div class="chat-panel">
+            <div class="chat-header">
+                <h3>Assistente GMOS</h3>
+                <p>Chat interativo</p>
             </div>
-            <h3>Assistente Virtual GMOS</h3>
-            <p>Estou ouvindo... O que deseja fazer na sua TV?</p>
+            
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-bubble bot-bubble">Olá! Eu sou a Assistente GMOS. Escreva "abrir [nome do app]" para eu iniciar algo para você, ou apenas mande um oi!</div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" class="focusable" tabindex="0" placeholder="Digite seu comando..." autocomplete="off">
+                <div class="send-btn focusable" tabindex="0" id="chat-send">➤</div>
+            </div>
         </div>
     </div>
 

@@ -90,17 +90,10 @@ document.addEventListener('click', (e) => {
         const vaOverlay = document.getElementById('va-overlay');
         vaOverlay.classList.remove('hidden');
         
-        // Simula processamento
+        // Foca automaticamente no input para abrir o teclado virtual da TV
         setTimeout(() => {
-            const p = vaOverlay.querySelector('p');
-            p.textContent = "Abrindo o Navegador para você...";
-            setTimeout(() => {
-                vaOverlay.classList.add('hidden');
-                p.textContent = "Estou ouvindo... O que deseja fazer na sua TV?";
-                // Foca de volta no assistente
-                target.focus();
-            }, 2000);
-        }, 3000);
+            document.getElementById('chat-input').focus();
+        }, 100);
     } 
     else if (action === 'launch') {
         const pkg = target.getAttribute('data-pkg');
@@ -126,6 +119,8 @@ document.addEventListener('click', (e) => {
 });
 
 // Inicialização de Foco e Busca de Apps Nativos
+window.allInstalledApps = [];
+
 document.addEventListener('DOMContentLoaded', async () => {
     const firstIcon = document.querySelector('.nav-icon.active');
     if (firstIcon) firstIcon.focus();
@@ -133,18 +128,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         if (window.Capacitor && window.Capacitor.Plugins.AppLauncherPlugin) {
             const result = await window.Capacitor.Plugins.AppLauncherPlugin.getInstalledApps();
+            window.allInstalledApps = result.apps;
             renderRealApps(result.apps);
         } else {
             // Emulador para PC
-            renderRealApps([
+            window.allInstalledApps = [
                 { name: 'Netflix', packageName: 'com.netflix.ninja', icon: null },
                 { name: 'YouTube', packageName: 'com.google.android.youtube.tv', icon: null },
                 { name: 'Prime Video', packageName: 'com.amazon.amazonvideo.livingroom', icon: null }
-            ]);
+            ];
+            renderRealApps(window.allInstalledApps);
         }
     } catch (e) {
         console.error("Erro ao carregar apps:", e);
     }
+
+    // Inicializa Eventos do Chat
+    setupChatLogic();
 });
 
 function renderRealApps(appsList) {
@@ -176,5 +176,64 @@ function renderRealApps(appsList) {
         `;
 
         container.appendChild(poster);
+    });
+}
+
+function setupChatLogic() {
+    const input = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('chat-send');
+    const messages = document.getElementById('chat-messages');
+
+    const addMessage = (text, isUser) => {
+        const div = document.createElement('div');
+        div.className = `chat-bubble ${isUser ? 'user-bubble' : 'bot-bubble'}`;
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    };
+
+    const handleSend = () => {
+        const text = input.value.trim();
+        if (!text) return;
+        
+        addMessage(text, true);
+        input.value = '';
+        
+        // Simples Inteligência para processar o comando
+        setTimeout(() => processCommand(text.toLowerCase()), 500);
+    };
+
+    const processCommand = (cmd) => {
+        if (cmd.startsWith("abrir ") || cmd.startsWith("open ")) {
+            const appName = cmd.replace("abrir ", "").replace("open ", "").trim();
+            
+            // Busca aplicativo
+            const app = window.allInstalledApps.find(a => a.name.toLowerCase().includes(appName));
+            
+            if (app) {
+                addMessage(`Abrindo o ${app.name} para você! 🚀`, false);
+                setTimeout(() => {
+                    if (window.Capacitor && window.Capacitor.Plugins.AppLauncherPlugin) {
+                        window.Capacitor.Plugins.AppLauncherPlugin.launchApp({ packageName: app.packageName });
+                    }
+                }, 1000);
+            } else {
+                addMessage(`Puxa, não encontrei nenhum aplicativo chamado "${appName}" na sua Mi Box.`, false);
+            }
+        } else if (cmd.includes("olá") || cmd.includes("oi")) {
+            addMessage("Olá! Que bom falar com você. Quer que eu abra algum app?", false);
+        } else if (cmd.includes("obrigado") || cmd.includes("valeu")) {
+            addMessage("Por nada! Estou sempre aqui para ajudar.", false);
+        } else {
+            addMessage("Ainda estou aprendendo a conversar! Por enquanto, tente me pedir para 'abrir' algum app.", false);
+        }
+    };
+
+    sendBtn.addEventListener('click', handleSend);
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSend();
+        }
     });
 }
