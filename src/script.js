@@ -105,9 +105,7 @@ document.addEventListener('click', (e) => {
     else if (action === 'launch') {
         const pkg = target.getAttribute('data-pkg');
         if (window.Capacitor && window.Capacitor.Plugins.AppLauncherPlugin) {
-            // Emulação por enquanto, ou envio real se fosse pacote verdadeiro
-            // window.Capacitor.Plugins.AppLauncherPlugin.launchApp({ packageName: pkg });
-            alert(`Iniciando app nativo: ${pkg}\n(Na TV, abriria o app verdadeiro)`);
+            window.Capacitor.Plugins.AppLauncherPlugin.launchApp({ packageName: pkg });
         } else {
             alert(`Iniciando app: ${pkg}`);
         }
