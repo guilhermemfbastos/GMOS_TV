@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GM OS Mobile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="launcher-container">
+        
+        <!-- Vertical Taskbar (Left) -->
+        <div class="taskbar">
+            <!-- Hamburger Menu (App Drawer Toggle) -->
+            <div class="taskbar-btn" id="app-drawer-btn">
+                <div class="hamburger-icon">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            
+            <div class="taskbar-divider"></div>
+            
+            <!-- Pinned/Recent Apps (Dynamically populated) -->
+            <div class="taskbar-apps" id="taskbar-apps">
+                <!-- Example pinned app -->
+                <div class="app-icon" data-pkg="com.android.settings">⚙️</div>
+            </div>
+        </div>
+
+        <!-- Desktop Area (Right) -->
+        <div class="desktop" id="desktop">
+            <div class="desktop-watermark">GM OS</div>
+            <!-- Desktop Grid for Apps -->
+            <div class="desktop-grid" id="desktop-grid">
+                <!-- Apps dropped here will appear in this grid -->
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- App Drawer Modal -->
+    <div class="app-drawer-modal hidden" id="app-drawer">
+        <div class="app-drawer-header">
+            <h2>Todos os Aplicativos</h2>
+            <button class="close-btn" id="close-drawer-btn">×</button>
+        </div>
+        <div class="app-drawer-grid" id="all-apps-grid">
+            <div class="loading-text">Carregando aplicativos...</div>
+        </div>
+    </div>
+
+    <!-- Context Menu (For removing apps from desktop) -->
+    <div class="context-menu hidden" id="context-menu">
+        <div class="context-menu-item" id="context-remove">Remover da Área de Trabalho</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
