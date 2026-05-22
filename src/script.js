@@ -120,8 +120,56 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Inicialização de Foco
-document.addEventListener('DOMContentLoaded', () => {
+// Inicialização de Foco e Busca de Apps Nativos
+document.addEventListener('DOMContentLoaded', async () => {
     const firstIcon = document.querySelector('.nav-icon.active');
     if (firstIcon) firstIcon.focus();
+
+    try {
+        if (window.Capacitor && window.Capacitor.Plugins.AppLauncherPlugin) {
+            const result = await window.Capacitor.Plugins.AppLauncherPlugin.getInstalledApps();
+            renderRealApps(result.apps);
+        } else {
+            // Emulador para PC
+            renderRealApps([
+                { name: 'Netflix', packageName: 'com.netflix.ninja', icon: null },
+                { name: 'YouTube', packageName: 'com.google.android.youtube.tv', icon: null },
+                { name: 'Prime Video', packageName: 'com.amazon.amazonvideo.livingroom', icon: null }
+            ]);
+        }
+    } catch (e) {
+        console.error("Erro ao carregar apps:", e);
+    }
 });
+
+function renderRealApps(appsList) {
+    const container = document.getElementById('real-apps-container');
+    container.innerHTML = ''; 
+
+    appsList.forEach((app) => {
+        const poster = document.createElement('div');
+        poster.className = 'poster focusable';
+        poster.tabIndex = 0;
+        poster.setAttribute('data-action', 'launch');
+        poster.setAttribute('data-pkg', app.packageName);
+
+        // Se tiver ícone do Android, usa como background
+        if (app.icon) {
+            poster.style.backgroundImage = `url('data:image/png;base64,${app.icon}')`;
+            poster.style.backgroundSize = 'contain';
+            poster.style.backgroundRepeat = 'no-repeat';
+            poster.style.backgroundColor = '#1a1c29';
+        } else {
+            poster.style.background = '#222';
+            poster.style.display = 'flex';
+            poster.style.alignItems = 'center';
+            poster.style.justifyContent = 'center';
+        }
+
+        poster.innerHTML = `
+            <div class="poster-title">${app.name}</div>
+        `;
+
+        container.appendChild(poster);
+    });
+}
